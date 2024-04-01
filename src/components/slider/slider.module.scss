@@ -1,0 +1,32 @@
+.container{
+    height: calc(100vh - 80px);
+    width: 100vw;
+    position: relative;
+    .slider{
+        display: flex;
+        width: 300vw;
+        height: 100%;
+        transition: all 1s ease-in;
+        img{
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .icons{
+        display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 100px;
+        width: 100px;
+        color: white;
+        cursor: pointer;
+        gap: 20px;
+        .icon svg{
+            font-size:50px ;
+            cursor: pointer;
+        }
+    }
+}
