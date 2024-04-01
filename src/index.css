@@ -20,3 +20,7 @@ code {
   --global-background-color:#1a73e8;
   --global-text-color:white;
 }
+.layout{
+  display: flex;
+  flex-direction: column;
+}

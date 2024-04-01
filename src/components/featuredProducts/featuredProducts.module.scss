@@ -1,6 +1,20 @@
 .container{
+    margin: 100px;
     .top{
         display: flex;
         align-items: center;
+        justify-content: center;
+        h1{
+            flex:2;
+        }
+        p{
+            flex: 3;
+            color: lightgray;
+        }
+    }
+    .bottom{
+        display: flex;
+        justify-content: center;
+        gap: 50px;
     }
 }
