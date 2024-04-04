@@ -1,7 +1,6 @@
 .products {
-    padding: 30px 50px;
     display: flex;
-  
+    padding: var(--global-container-padding);
     .left {
       flex: 1;
       position: sticky;
