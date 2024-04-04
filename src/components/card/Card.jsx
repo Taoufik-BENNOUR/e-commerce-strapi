@@ -2,7 +2,7 @@ import styles from './card.module.scss';
 import {Link} from "react-router-dom";
 const Card = ({el}) => {
   return (
-        <Link to={`/product/${el.id}`}>
+        <Link to={`/products/${el.id}`}>
             <div className={styles.card}>
                 <div className={styles.image}>
                  {el.isNew && <span>New</span>}
