@@ -7,14 +7,14 @@ import Products from '../products/Products'
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Slider/>
       <FeaturedProducts type="Featured"/>
       <FeaturedProducts type="Trending"/>
       <Categories/>
       <Products/>
       <Contact/>
-    </div>
+    </>
   )
 }
 

@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom';
 import styles from './navbar.module.scss'
 import { FaAngleDown, FaCartShopping, FaRegUser  } from "react-icons/fa6";
 import { FaRegHeart, FaSearch } from "react-icons/fa";
+import Cart from '../cartPopUp/Cart';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -46,13 +50,14 @@ const Navbar = () => {
             <FaSearch/>
             <FaRegUser />
             <FaRegHeart />
-            <div className={styles.cartIcon}>
+            <div className={styles.cartIcon} onClick={()=>setOpen(prev=>!prev)}>
               <FaCartShopping/>
               <span>0</span>
             </div>
           </div>
         </div>
       </div>
+      {open && <Cart/>}
     </div>
   )
 }
