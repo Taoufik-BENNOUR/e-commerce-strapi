@@ -6,7 +6,7 @@ const Card = ({el}) => {
             <div className={styles.card}>
                 <div className={styles.image}>
                  {el.isNew && <span>New</span>}
-                    <img src={el.img} alt="" className={styles.primaryImg}/>
+                    <img src={""} alt="" className={styles.primaryImg}/>
                     <img src={el.img2} alt="" className={styles.secondaryImg} />
                 </div>
                 <h2>{el.title}</h2>
