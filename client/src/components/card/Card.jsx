@@ -5,14 +5,14 @@ const Card = ({el}) => {
         <Link to={`/products/${el.id}`}>
             <div className={styles.card}>
                 <div className={styles.image}>
-                 {el.isNew && <span>New</span>}
-                    <img src={""} alt="" className={styles.primaryImg}/>
-                    <img src={el.img2} alt="" className={styles.secondaryImg} />
+                 {el.attributes.isNew && <span>New</span>}
+                    <img src={process.env.REACT_APP_UPLOAD_URL + el.attributes?.image?.data?.attributes?.url} alt="" className={styles.primaryImg}/>
+                    <img src={el.attributes.img2} alt="" className={styles.secondaryImg} />
                 </div>
-                <h2>{el.title}</h2>
+                <h2>{el.attributes.title}</h2>
                 <div className={styles.prices}>
-                    <h3>${el.oldPrice}</h3>
-                    <h3>${el.price}</h3>
+                    <h3>${el.attributes.oldPrice}</h3>
+                    <h3>${el.attributes.price}</h3>
                 </div>
             </div>
         </Link>

@@ -1,7 +1,22 @@
 import styles from './list.module.scss'
 import Card from '../card/Card'
+import { useEffect, useState } from 'react';
+import  axios from 'axios';
 
 const List = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async()=>{
+      try {
+        const response = await axios.get(process.env.REACT_APP_API_URL+"/products?populate=*",{headers:{'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`},
+      })
+      setProducts(response.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchProducts();
+  }, [])
     const data =[
         {
           id:1,
@@ -33,7 +48,7 @@ const List = () => {
       ]
   return (
     <div className={styles.container}>
-      {data.map((el,i)=>
+      {products.map((el,i)=>
           <Card el={el} key={i} />
           )}
     </div>
