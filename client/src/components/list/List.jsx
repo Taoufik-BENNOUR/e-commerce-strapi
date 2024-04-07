@@ -3,13 +3,14 @@ import Card from '../card/Card'
 import { useEffect, useState } from 'react';
 import  axios from 'axios';
 
-const List = () => {
+const List = ({type}) => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async()=>{
       try {
-        const response = await axios.get(process.env.REACT_APP_API_URL+"/products?populate=*",{headers:{'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`},
-      })
+        const response =type?
+        await axios.get(process.env.REACT_APP_API_URL+`/products?populate=*&[filters][type][$eq]=${type}`,{headers:{'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`}})
+        :await axios.get(process.env.REACT_APP_API_URL+`/products?populate=*`,{headers:{'Authorization': `Bearer ${process.env.REACT_APP_API_TOKEN}`}})
       setProducts(response.data.data);
       } catch (error) {
         console.log(error);
