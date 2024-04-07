@@ -2,8 +2,10 @@ import { useState } from 'react';
 import styles from './products.module.scss';
 import { useParams } from 'react-router-dom';
 import List from '../../components/list/List';
+import useFetch from '../../hooks/useFetch';
 
 const Products = () => {
+
   const categoryId =  parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000)
   const [sort, setSort] = useState(null)
@@ -19,6 +21,8 @@ const Products = () => {
       setfirst([...first,value])
     }
   }
+  const {data,loading,error} = useFetch(`/products?populate=*`);
+
   return (
     <div className={styles.products}>
       <div className={styles.left}>
@@ -76,7 +80,7 @@ const Products = () => {
           src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt=""
         />
-        <List catId={categoryId} maxPrice={maxPrice} sort={sort}/>
+        <List data={data} catId={categoryId} maxPrice={maxPrice} sort={sort}/>
       </div>
     </div>
   )
