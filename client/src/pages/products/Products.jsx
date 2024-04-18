@@ -21,8 +21,7 @@ const Products = () => {
       setfirst([...first,value])
     }
   }
-  const {data,loading,error} = useFetch(`/products?populate=*`);
-
+  const {data,loading,error} = useFetch(`/sub-categories?[filters][categories][id][$eq]=${categoryId}`);
   return (
     <div className={styles.products}>
       <div className={styles.left}>

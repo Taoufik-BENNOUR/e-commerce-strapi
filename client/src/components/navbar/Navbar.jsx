@@ -21,7 +21,7 @@ const Navbar = () => {
             <FaAngleDown />
           </div>
           <div className={styles.item}>
-            <Link to="/products/1">Woman</Link>
+            <Link to="/products/2">Woman</Link>
           </div>
           <div className={styles.item}>
             <Link to="/products/1">Men</Link>
