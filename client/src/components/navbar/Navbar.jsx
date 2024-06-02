@@ -4,10 +4,11 @@ import { FaAngleDown, FaCartShopping, FaRegUser  } from "react-icons/fa6";
 import { FaRegHeart, FaSearch } from "react-icons/fa";
 import Cart from '../cartPopUp/Cart';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-
+  const products = useSelector(state=>state.cart.products)
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -52,7 +53,7 @@ const Navbar = () => {
             <FaRegHeart />
             <div className={styles.cartIcon} onClick={()=>setOpen(prev=>!prev)}>
               <FaCartShopping/>
-              <span>0</span>
+              <span>{products.length}</span>
             </div>
           </div>
         </div>
