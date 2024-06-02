@@ -3,6 +3,8 @@ import styles from './product.module.scss';
 import { FaBalanceScale, FaCartPlus, FaHeart } from "react-icons/fa";
 import useFetch from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addTocart } from '../../components/redux/cartReducer';
 
 const Product = () => {
   const [selectedImage, setSelectedImage] = useState("image");
@@ -12,6 +14,7 @@ const Product = () => {
 "https://images.pexels.com/photos/2036646/pexels-photo-2036646.jpeg?auto=compress&cs=tinysrgb&w=1600",
 "https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg?auto=compress&cs=tinysrgb&w=1600",
   ]
+  const dispatch = useDispatch();
   const id = useParams().id;
   const {data,loading,error} = useFetch(`/products/${id}?populate=*`);
   return (
@@ -33,7 +36,13 @@ const Product = () => {
           <span>{quantity}</span>
           <button onClick={()=>setQuantity((prev)=>prev+1)}>+</button>
         </div>
-        <button className={styles.add}>
+        <button className={styles.add} onClick={()=>dispatch(addTocart({id:data.id,
+          title:data.attributes.title,
+          desc:data.attributes.description,
+          price:data.attributes.price,
+          img:data.attributes.image.data.attributes.url,
+          quantity
+          }))}>
           <FaCartPlus />  ADD TO CART
         </button>
         <div className={styles.link}>

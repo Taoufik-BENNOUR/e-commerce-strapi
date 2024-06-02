@@ -1,7 +1,16 @@
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './cart.module.scss';
 import { FaTrash } from 'react-icons/fa';
+import { removeItem, resetCart } from '../redux/cartReducer';
 
 const Cart = () => {
+  const products = useSelector(state=>state.cart.products)
+const total = () =>{
+  let total = 0;
+  products.forEach(item =>total+= item.quantity * item.price)
+  return total.toFixed(2);
+}
+const dispatch = useDispatch();
     const data =[
         {
           id:1,
@@ -36,22 +45,23 @@ const Cart = () => {
   return (
     <div className={styles.container}>
         <h1>Cart</h1>
-        {data?.map(item=>
+        {products?.map(item=>
         <div className={styles.item}>
-            <img src={item.img}alt="" />
+            <img src={process.env.REACT_APP_UPLOAD_URL+item.img}alt="" />
             <div className={styles.detail}>
                 <h1>{item.title}</h1>
                 <p>{item.desc}</p>
-                <div className={styles.price}>{item.price}</div>
+                <div className={styles.price}>{item.quantity} x ${item.price}</div>
             </div>
-            <FaTrash className={styles.delete} />
+            <FaTrash onClick={()=>dispatch(removeItem(item.id))} className={styles.delete} />
         </div>
         )}
         <div className={styles.total}>
             <span>SUB TOTAL</span>
-            <span>{data.reduce((a,b)=>a+ b.price,0)}</span>
+            <span>{total()}</span>
         </div>
         <button className={styles.checkout}>CHECKOUT</button>
+        <span onClick={()=>dispatch(resetCart())} className={styles.reset}>Reset cart</span>
     </div>
   )
 }
